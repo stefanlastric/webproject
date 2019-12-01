@@ -5,7 +5,7 @@ client/node_modules
 .pnp.js
 
 #privacy config
-config/default.json/
+config/default.json
 
 #testing
 /coverage
