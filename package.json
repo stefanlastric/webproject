@@ -1,30 +1,27 @@
 {
-  "name": "application",
+  "name": "Application",
   "version": "1.0.0",
-  "description": "moja aplikacija",
-  "main": "app.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "node server",
-    "server": "nodemon server",
-    "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "frontend": "cd client && npm start",
+    "backend": "cd server && nodemon server.js",
+    "dev": "concurrently --kill-others \"npm run backend\" \"npm run frontend\"",
+    "install": "cd server && npm install && cd ../client && npm install",
+    "start": "cd client && npm run build && cd ../server && node server.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stefanlastric/webproject.git"
+  },
+  "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "bcrypt": "^3.0.7",
-    "config": "^3.2.4",
-    "express": "^4.17.1",
-    "express-validator": "^6.3.0",
-    "gravatar": "^1.8.0",
-    "jsonwebtoken": "^8.5.1",
-    "mongojs": "^3.1.0",
-    "mongoose": "^5.7.13",
-    "mongoose-unique-validator": "^2.0.3",
-    "nodemon": "^1.19.4",
-    "validator": "^12.1.0"
+  "bugs": {
+    "url": "https://github.com/stefanlastric/webproject/issues"
   },
+  "homepage": "https://github.com/stefanlastric/webproject#readme",
   "devDependencies": {
-    "concurrently": "^5.0.0"
+    "concurrently": "^5.0.2"
   }
 }
