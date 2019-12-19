@@ -17,7 +17,16 @@ const ActorSchema = new mongoose.Schema(
     dateAdded: {
       type: Date,
       default: Date.now
-    }
+    },
+    movies: [
+      {
+        movie: {
+          type: Schema.Types.ObjectId,
+          ref: 'movies'
+        },
+        name: { type: String, required: true }
+      }
+    ]
   },
   { timestamps: true }
 );

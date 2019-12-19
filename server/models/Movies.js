@@ -17,14 +17,19 @@ const MovieSchema = new mongoose.Schema(
       type: Int,
       required: true
     },
-    famousactors: {
-      type: String,
-      required: true
-    },
     dateAdded: {
       type: Date,
       default: Date.now
-    }
+    },
+    actors: [
+      {
+        actor: {
+          type: Schema.Types.ObjectId,
+          ref: 'actors'
+        },
+        name: { type: String, required: true }
+      }
+    ]
   },
   { timestamps: true }
 );
