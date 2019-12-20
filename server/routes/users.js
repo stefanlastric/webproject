@@ -5,14 +5,9 @@ const jwt = require('jsonwebtoken');
 const config = require('config');
 const { check, validationResult } = require('express-validator/check');
 
-const User = require('../../models/User');
+const User = require('../models/User');
 
-//@route    GET api/users
-//@desc     Test route
-//@access   public
-router.get('/', (req, res) => res.send('User route'));
-
-//@route    POST api/users
+//@route    POST users
 //@desc     User registration
 //@access   public
 router.post(
@@ -49,7 +44,6 @@ router.post(
       user = new User({
         name,
         email,
-        usertype,
         password
       });
 

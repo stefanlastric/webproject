@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const auth = require('../../middleware/auth');
+const auth = require('../middleware/auth');
 
 const { check, validationResult } = require('express-validator');
 
-const actor = require('../../models/Actor');
-const User = require('../../models/User');
+const Actor = require('../models/Actor');
+const User = require('../models/User');
 
 //@route    GET actor
 //@desc     Get all actors

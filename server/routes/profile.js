@@ -1,20 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const auth = require('../../middleware/auth');
+const auth = require('../middleware/auth');
 
-const Profile = require('../../models/Profile');
-const User = require('../../models/User');
-//const Post = require('../../models/Post');
+const Profile = require('../models/Profile');
+const User = require('../models/User');
 
-//@route    GET api/profile/me
+//@route    GET profile/me
 //@desc     Get current users profile
 //@access   Private
 router.get('/me', auth, async (req, res) => {
   try {
-    const profile = await Profile.findOne({ user: req.user.id }).populate(
-      'user',
-      ['name', 'avatar']
-    );
+    const profile = await Profile.findOne({
+      user: req.user.id
+    }).populate('user', ['name', 'avatar']);
     if (!profile) {
       return res.status(400).json({ msg: 'There is no profile for this user' });
     }
@@ -25,15 +23,11 @@ router.get('/me', auth, async (req, res) => {
   }
 });
 
-// @route    POST api/profile
+// @route    POST profile
 // @desc     Create or update user profile
 // @access   Private
 router.post('/', auth, async (req, res) => {
-  const {
-    website,
-    bio,
-    interests
-  } = req.body;
+  const { website, bio, interests } = req.body;
 
   // Build profile object
   const profileFields = {};
@@ -45,9 +39,9 @@ router.post('/', auth, async (req, res) => {
       .split(',')
       .map(interests => interests.trim());
   }
+});
 
-
-// @route    GET api/profile
+// @route    GET profile
 // @desc     Get all profiles
 // @access   Public
 router.get('/', async (req, res) => {
@@ -60,7 +54,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// @route    GET api/profile/user/:user_id
+// @route    GET profile/user/:user_id
 // @desc     Get profile by user ID
 // @access   Public
 router.get('/user/:user_id', async (req, res) => {
@@ -82,7 +76,7 @@ router.get('/user/:user_id', async (req, res) => {
   }
 });
 
-// @route    DELETE api/profile
+// @route    DELETE profile
 // @desc     Delete profile, user and posts
 // @access   Private
 router.delete('/', auth, async (req, res) => {

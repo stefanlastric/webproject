@@ -11,6 +11,11 @@ connectDB();
 app.use(express.json({ extended: false }));
 
 //define routes
-app.get('/', (req, res) => res.send('Test 1!'));
+//app.use('/', express.static('../client/build'));
+app.use('/users', require('./routes/users'));
+app.use('/login', require('./routes/login'));
+app.use('/movies', require('./routes/movies'));
+app.use('/actor', require('./routes/actor'));
+app.use('/profile', require('./routes/profile'));
 
-app.listen(process.env.PORT || 3000, () => console.log('App je na portu 3000'));
+app.listen(process.env.PORT || 4000, () => console.log('App je na portu 4000'));

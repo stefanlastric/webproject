@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const auth = require('../../middleware/auth');
+const auth = require('../middleware/auth');
 
 const { check, validationResult } = require('express-validator');
 
-const Movie = require('../../models/Movies');
-const User = require('../../models/User');
+const Movie = require('../models/Movies');
+const User = require('../models/User');
 
 //@route    GET movies
 //@desc     Get all movies

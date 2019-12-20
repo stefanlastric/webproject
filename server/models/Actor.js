@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const ActorSchema = new mongoose.Schema(
   {
@@ -11,7 +12,7 @@ const ActorSchema = new mongoose.Schema(
       required: true
     },
     age: {
-      type: Int,
+      type: Number,
       required: true
     },
     dateAdded: {
@@ -31,4 +32,4 @@ const ActorSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = Actor = mongoose.model('actor', UserSchema);
+module.exports = Actor = mongoose.model('actor', ActorSchema);
