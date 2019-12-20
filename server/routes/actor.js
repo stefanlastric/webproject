@@ -108,7 +108,11 @@ router.delete('/:id', auth, async (req, res) => {
       return res.status(404).json({ msg: 'actor does not exist' });
     }
 
-    //TODO check if user is admin
+    const user = await User.findById(req.user.id).select('-password');
+    //check if user is admin
+    if (!user.usertype) {
+      res.status(401).json({ msg: 'Unauthorised access' });
+    }
     await actor.remove();
 
     res.status(200).json({ msg: 'actor removed' });

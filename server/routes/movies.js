@@ -4,7 +4,7 @@ const auth = require('../middleware/auth');
 
 const { check, validationResult } = require('express-validator');
 
-const Movie = require('../models/Movies');
+const Movies = require('../models/Movies');
 const User = require('../models/User');
 
 //@route    GET movies
@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
 //@access   public
 router.get('/:id', async (req, res) => {
   try {
-    const movies = await mMvies.findById(req.params.id);
+    const movies = await Movies.findById(req.params.id);
     //check if movie exist
     if (!movies) {
       return res.status(404).json({ msg: 'Movie does not exist' });
@@ -37,6 +37,8 @@ router.get('/:id', async (req, res) => {
     return res.status(500).json({ msg: 'Server Error' });
   }
 });
+
+//TODO dodati za like-ove code
 
 //@route    POST movies
 //@desc     Create new movie
@@ -110,7 +112,12 @@ router.delete('/:id', auth, async (req, res) => {
       return res.status(404).json({ msg: 'Movie does not exist' });
     }
 
-    //TODO check if user is admin
+    const user = await User.findById(req.user.id).select('-password');
+    //check if user is admin
+    if (!user.usertype) {
+      res.status(401).json({ msg: 'Unauthorised access' });
+    }
+
     await movies.remove();
 
     res.status(200).json({ msg: 'Movie removed' });

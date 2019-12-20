@@ -22,6 +22,7 @@ const MovieSchema = new mongoose.Schema(
       type: Date,
       default: Date.now
     },
+    //TODO dodati za lajkove (LIKE)
     actors: [
       {
         actor: {
