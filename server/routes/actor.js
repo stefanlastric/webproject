@@ -77,9 +77,8 @@ router.post(
         age: req.body.age,
         movies: { name: req.body.name }
       });
-
+      const { name, from, age, movies } = req.body;
       const actorFields = {};
-      actorsFields.actor = req.actor.id;
       if (name) actorFields.name = name;
       if (from) actorFields.from = from;
       if (age) actorFields.age = age;

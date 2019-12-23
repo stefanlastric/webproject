@@ -70,17 +70,18 @@ router.post(
       //Add other fields from category schema
       const newCategory = new Category({
         genre: req.body.genre,
-        description: req.body.description,
-        movies: { name: req.body.name }
+        description: req.body.description
+        //TODO ALdine pomozi movies: { name: req.body.name }
       });
 
+      const { genre, description } = req.body;
+
       const categoryFields = {};
-      categoryFields.category = req.category.id;
-      if (name) categoryFields.name = name;
+      if (description) categoryFields.description = description;
       if (genre) categoryFields.genre = genre;
-      if (movies) {
+      /* if (movies) {
         categoryFields.movies = movies.split(',').map(movies => movies.trim());
-      }
+      }*/
 
       const category = await newCategory.save();
 

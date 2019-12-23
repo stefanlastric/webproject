@@ -38,7 +38,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-//@route    PUT api/movies/like/:id
+//@route    PUT movies/like/:id
 //@desc     Like a movie
 //@access   Private
 router.put('/like/:id', auth, async (req, res) => {
@@ -63,7 +63,7 @@ router.put('/like/:id', auth, async (req, res) => {
   }
 });
 
-//@route    PUT api/movies/unlike/:id
+//@route    PUT movies/unlike/:id
 //@desc     Unlike a movie
 //@access   Private
 router.put('/unlike/:id', auth, async (req, res) => {
@@ -128,22 +128,22 @@ router.post(
       //Add other fields from movies schema
       const newMovies = new Movies({
         name: req.body.name,
-        from: req.body.from,
         genre: req.body.genre,
         year: req.body.year,
-        actors: { name: req.body.name }
+        from: req.body.from
+        //actors: { actorname: req.body.actorname } //TODO PITATI ALDINA
       });
 
+      const { name, genre, year, from } = req.body;
+
       const moviesFields = {};
-      moviesFields.movies = req.movies.id;
       if (name) moviesFields.name = name;
       if (from) moviesFields.from = from;
       if (genre) moviesFields.genre = genre;
       if (year) moviesFields.year = year;
-      if (actors) {
+      /*if (actors) {
         moviesFields.actors = actors.split(',').map(actors => actors.trim());
-      }
-
+      }*/
       const movies = await newMovies.save();
 
       res.json(movies);

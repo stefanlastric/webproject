@@ -8,8 +8,7 @@ const MovieSchema = new mongoose.Schema(
       required: true
     },
     from: {
-      type: String,
-      required: true
+      type: String
     },
     genre: {
       type: String
@@ -53,7 +52,7 @@ const MovieSchema = new mongoose.Schema(
           type: Schema.Types.ObjectId,
           ref: 'actors'
         },
-        name: { type: String, required: true }
+        actorname: { type: String }
       }
     ]
   },
