@@ -18,6 +18,30 @@ const MovieSchema = new mongoose.Schema(
       type: Number,
       required: true
     },
+    likes: [
+      {
+        user: {
+          type: Schema.Types.ObjectId,
+          ref: 'users'
+        }
+      }
+    ],
+    review: [
+      {
+        user: {
+          type: Schema.Types.ObjectId,
+          ref: 'users'
+        },
+        text: {
+          type: String,
+          required: true
+        },
+        name: {
+          type: String
+        }
+      },
+      { timestamps: true }
+    ],
     dateAdded: {
       type: Date,
       default: Date.now
