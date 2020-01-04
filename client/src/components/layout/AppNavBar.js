@@ -1,13 +1,6 @@
 import React from 'react';
-import {
-  Navbar,
-  Nav,
-  Form,
-  FormControl,
-  Button,
-  NavDropdown
-} from 'react-bootstrap';
-import { NavLink, Link, withRouter } from 'react-router-dom';
+import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
+// import { NavLink, Link, withRouter } from 'react-router-dom';
 
 const AppNavBar = () => {
   return (
@@ -26,7 +19,7 @@ const AppNavBar = () => {
         </Form>
         <Nav className='ml-auto'>
           <Nav.Link href='#login'>Login</Nav.Link>
-          <Nav.Link href='#register'>Register</Nav.Link>
+          <Nav.Link href='/register'>Register</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
