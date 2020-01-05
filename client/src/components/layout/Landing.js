@@ -1,33 +1,25 @@
-import React from 'react';
-import Carousel from 'react-bootstrap/Carousel';
+import React, { Component } from 'react';
+import Card from 'react-bootstrap/Card';
 
-const Landing = () => {
-  return (
-    <Carousel>
-      <Carousel.Item>
-        <img
-          className='d-block w-100'
-          src='https://mdbootstrap.com/img/Photos/Slides/img%20(6).jpg?text=First slide&bg=373940'
-          alt='First slide'
+class Landing extends Component {
+  render() {
+    return (
+      <Card style={{ width: '18rem' }}>
+        <Card.Img
+          variant='top'
+          src='https://upload.wikimedia.org/wikipedia/sh/thumb/8/84/%D0%89%D0%B5%D1%82%D0%BE_%D1%83_%D0%B7%D0%BB%D0%B0%D1%82%D0%BD%D0%BE%D1%98_%D0%B4%D0%BE%D0%BB%D0%B8%D0%BD%D0%B8.jpg/200px-%D0%89%D0%B5%D1%82%D0%BE_%D1%83_%D0%B7%D0%BB%D0%B0%D1%82%D0%BD%D0%BE%D1%98_%D0%B4%D0%BE%D0%BB%D0%B8%D0%BD%D0%B8.jpg'
         />
-        <Carousel.Caption>
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item>
-        <img
-          className='d-block w-100'
-          src='https://mdbootstrap.com/img/Photos/Slides/img%20(33).jpg?text=First slide&bg=373940'
-          alt='First slide'
-        />
-        <Carousel.Caption>
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </Carousel.Caption>
-      </Carousel.Item>
-    </Carousel>
-  );
-};
+        <Card.Body>
+          <Card.Title>Ljeto u Zlatnoj dolini</Card.Title>
+          <Card.Text>Akcioni domaci film</Card.Text>
+        </Card.Body>
+      </Card>
+    );
+  }
+}
 
-export default Landing;
+export default () => (
+  <div>
+    <Landing />
+  </div>
+);

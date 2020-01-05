@@ -1,8 +1,11 @@
 import React, { Fragment, useState } from 'react';
-import { Form, Col, Button } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { connect } from 'react-redux';
+import { Link, Redirect } from 'react-router-dom';
+import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
+import PropTypes from 'prop-types';
 
-const Register = () => {
+const Register = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -15,7 +18,7 @@ const Register = () => {
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault();
     if (password !== password2) {
       setAlert('Passwords do not match', 'danger');
@@ -24,61 +27,63 @@ const Register = () => {
     }
   };
 
+  if (isAuthenticated) {
+    return <Redirect to='/dashboard' />;
+  }
+
   return (
     <Fragment>
       <h1 className='large text-primary'>Sign Up</h1>
       <p className='lead'>
         <i className='fas fa-user'></i> Create Your Account
       </p>
-      <Form onSubmit={e => onSubmit(e)}>
-        <Form.Group controlId='formGridName'>
-          login
-          <Form.Label>Name and Surname</Form.Label>
-          <Form.Control
-            value={name}
+      <form className='form' onSubmit={e => onSubmit(e)}>
+        <div className='form-group'>
+          <input
+            type='text'
+            placeholder='Name'
             name='name'
+            value={name}
             onChange={e => onChange(e)}
-            placeholder='Enter your name and surname'
+            //required
           />
-        </Form.Group>
-
-        <Form.Group controlId='formGridEmail'>
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            value={email}
-            name='email'
-            onChange={e => onChange(e)}
+        </div>
+        <div className='form-group'>
+          <input
             type='email'
-            placeholder='Enter email'
+            placeholder='Email Address'
+            name='email'
+            value={email}
+            onChange={e => onChange(e)}
+            //required
           />
-        </Form.Group>
-
-        <Form.Group controlId='formGridPassword'>
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            value={password}
+          <small className='form-text'></small>
+        </div>
+        <div className='form-group'>
+          <input
+            type='password'
+            placeholder='Password'
             name='password'
+            value={password}
             onChange={e => onChange(e)}
-            type='password'
-            placeholder='Password'
+            //minLength='5'
           />
-        </Form.Group>
-
-        <Form.Group controlId='formGridPassword'>
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            value={password2}
+        </div>
+        <div className='form-group'>
+          <input
+            type='password'
+            placeholder='Confirm Password'
             name='password2'
+            value={password2}
             onChange={e => onChange(e)}
-            type='password'
-            placeholder='Password'
+            //minLength='5'
           />
-        </Form.Group>
-
-        <Button variant='primary' type='submit'>
-          Submit
-        </Button>
-      </Form>
+        </div>
+        <input type='submit' className='btn btn-primary' value='Register' />
+      </form>
+      <p className='my-1'>
+        Already have an account? <Link to='/login'>Sign In</Link>
+      </p>
     </Fragment>
   );
 };
@@ -89,4 +94,8 @@ Register.propTypes = {
   isAuthenticated: PropTypes.bool
 };
 
-export default Register;
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { setAlert, register })(Register);
