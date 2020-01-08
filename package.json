@@ -1,0 +1,27 @@
+{
+  "name": "Application",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "frontend": "cd client && npm start",
+    "backend": "cd server && nodemon server.js",
+    "dev": "concurrently --kill-others \"npm run backend\" \"npm run frontend\"",
+    "install": "cd server && npm install && cd ../client && npm install",
+    "start": "cd client && npm run build && cd ../server && node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stefanlastric/webproject.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stefanlastric/webproject/issues"
+  },
+  "homepage": "https://github.com/stefanlastric/webproject#readme",
+  "devDependencies": {
+    "concurrently": "^5.0.2"
+  }
+}
