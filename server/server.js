@@ -10,6 +10,10 @@ connectDB();
 // Init Middleware
 app.use(express.json({ extended: false }));
 
+//zbog cors errora izmedju portova
+const cors = require('cors');
+app.use(cors());
+
 //define routes
 //app.use('/', express.static('../client/build'));
 app.use('/users', require('./routes/users'));
