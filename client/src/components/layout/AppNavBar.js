@@ -1,6 +1,6 @@
 import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
@@ -8,6 +8,22 @@ import { logout } from '../../actions/auth';
 export const AppNavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLink = (
     <Nav className="ml-auto">
+      <Nav.Link
+        activeStyle={{ color: '#ED5035' }}
+        as={NavLink}
+        exact
+        to="/actors/add"
+      >
+        Add New Actor
+      </Nav.Link>
+      <Nav.Link
+        activeStyle={{ color: '#ED5035' }}
+        as={NavLink}
+        exact
+        to="/movies/add"
+      >
+        Add New Movie
+      </Nav.Link>
       <Nav.Item>
         <Nav.Link href="/profiles">Profile</Nav.Link>
       </Nav.Item>
