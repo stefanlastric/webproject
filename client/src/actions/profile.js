@@ -49,8 +49,8 @@ export const getProfilesById = userId => async dispatch => {
   try {
     const res = await axios.get(`/profiles/user/${userId}`);
 
-    dispatch({
-      type: GET_PROFILE,
+    dispatch({2" />
+    <Button variant="outline-success">Search</Button>
       payload: res.data
     });
   } catch (err) {

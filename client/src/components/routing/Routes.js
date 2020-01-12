@@ -8,8 +8,8 @@ import AddActor from '../actors/AddActor';
 import AddMovie from '../movies/AddMovie';
 import ListActors from '../actors/ListActors';
 import ListMovies from '../movies/ListMovies';
-import ListProfiles from '../profiles/ListProfiles';
-import CreateProfile from '../profiles/CreateProfile';
+import Profile from '../profiles/Profile';
+import Category from '../movies/Category';
 
 class Routes extends React.Component {
   render() {
@@ -19,8 +19,8 @@ class Routes extends React.Component {
       <section className="container">
         <Switch>
           <Route exact path="/register" component={Register} />
+          <Route exact path="/category" component={Category} />
           <Route exact path="/login" component={Login} />
-          <Route exact path="/profiles/add" component={CreateProfile} />
           {isAuthenticated && (
             <Route private path="/actors/add" component={AddActor} />
           )}
@@ -30,7 +30,7 @@ class Routes extends React.Component {
           )}
           <Route exact path="/movies" component={ListMovies} />
           {isAuthenticated && (
-            <Route private path="/profiles" component={ListProfiles} />
+            <Route private path="/profiles" component={Profile} />
           )}
           {isAuthenticated && (
             <Route private path="/movies/add" component={AddMovie} />

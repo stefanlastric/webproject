@@ -72,6 +72,12 @@ export const AppNavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
         </Nav.Item>
         <Nav.Item>
           {' '}
+          <Nav.Link to="/category" exact as={NavLink}>
+            Category
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          {' '}
           <Nav.Link to="/actors" exact as={NavLink}>
             Actors
           </Nav.Link>
