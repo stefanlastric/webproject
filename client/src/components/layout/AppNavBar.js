@@ -25,10 +25,9 @@ export const AppNavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
         Add New Movie
       </Nav.Link>
       <Nav.Item>
-        <Nav.Link href="/profiles">Profile</Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Nav.Link href="/dashboard">Dashboard</Nav.Link>
+        <Nav.Link to="/profiles" exact as={NavLink}>
+          Profile
+        </Nav.Link>
       </Nav.Item>
       <Nav.Item>
         <Nav.Link onClick={logout} href="#!">
@@ -41,10 +40,14 @@ export const AppNavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const guestLinks = (
     <Nav className="ml-auto">
       <Nav.Item>
-        <Nav.Link href="/register">Register</Nav.Link>
+        <Nav.Link to="/register" exact as={NavLink}>
+          Register
+        </Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link href="/login">Login</Nav.Link>
+        <Nav.Link to="/login" exact as={NavLink}>
+          Login
+        </Nav.Link>
       </Nav.Item>
     </Nav>
   );
@@ -52,18 +55,26 @@ export const AppNavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
   return (
     <Navbar bg="light" expand="lg">
       <Nav>
-        <Navbar.Brand href="/">Movies.ba</Navbar.Brand>
+        <Navbar.Brand to="/" exact as={NavLink}>
+          Movies.ba
+        </Navbar.Brand>
         <Nav.Item>
           {' '}
-          <Nav.Link href="/">Home</Nav.Link>
+          <Nav.Link to="/" exact as={NavLink}>
+            Home
+          </Nav.Link>
         </Nav.Item>
         <Nav.Item>
           {' '}
-          <Nav.Link href="/movies">Movies</Nav.Link>
+          <Nav.Link to="/movies" exact as={NavLink}>
+            Movies
+          </Nav.Link>
         </Nav.Item>
         <Nav.Item>
           {' '}
-          <Nav.Link href="/actors">Actors</Nav.Link>
+          <Nav.Link to="/actors" exact as={NavLink}>
+            Actors
+          </Nav.Link>
         </Nav.Item>
       </Nav>
       <Nav>

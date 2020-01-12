@@ -2,14 +2,7 @@ import React, { Component } from 'react';
 
 /* Asynchronous HTTP library */
 import Axios from 'axios';
-import {
-  ListGroup,
-  Card,
-  ListGroupItem,
-  CardColumns,
-  Button
-} from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { ListGroup, Card, ListGroupItem, CardColumns } from 'react-bootstrap';
 
 class ListMovies extends Component {
   constructor(props) {
@@ -44,6 +37,8 @@ class ListMovies extends Component {
   };
 
   render() {
+    const { movies } = this.state;
+    console.log(this.props);
     return (
       <div>
         <h2>Movie list</h2>
@@ -51,24 +46,29 @@ class ListMovies extends Component {
           <div>
             {
               <CardColumns>
-                {this.state.movies.map(movies => (
-                  <Card style={{ width: '18rem', margin: '1rem' }}>
-                    <Card.Img variant="top" src={movies.image} />
-                    <Card.Body>
-                      <Card.Title>{movies.name}</Card.Title>
-                    </Card.Body>
-                    <ListGroup className="list-group-flush">
-                      <ListGroupItem>
-                        <b>Year: </b>
-                        {movies.year}
-                      </ListGroupItem>
-                      <ListGroupItem>
-                        <b>Genre: </b>
-                        {movies.genre}
-                      </ListGroupItem>
-                    </ListGroup>
-                  </Card>
-                ))}
+                {movies.map((movie, index) => {
+                  return (
+                    <Card
+                      key={index}
+                      style={{ width: '18rem', margin: '1rem' }}
+                    >
+                      <Card.Img variant="top" src={movie.image} />
+                      <Card.Body>
+                        <Card.Title>{movie.name}</Card.Title>
+                      </Card.Body>
+                      <ListGroup className="list-group-flush">
+                        <ListGroupItem>
+                          <b>Year: </b>
+                          {movie.year}
+                        </ListGroupItem>
+                        <ListGroupItem>
+                          <b>Genre: </b>
+                          {movie.genre}
+                        </ListGroupItem>
+                      </ListGroup>
+                    </Card>
+                  );
+                })}
               </CardColumns>
             }
           </div>

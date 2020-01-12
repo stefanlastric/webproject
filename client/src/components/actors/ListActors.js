@@ -23,7 +23,7 @@ class ListActors extends Component {
 
   /* Use the lifecycle method to fetch relevant data */
   componentDidMount = () => {
-    Axios.get('/actors')
+    Axios.get('/actor')
       .then(response => {
         /* Use response.data to access the actual data */
         this.setState({
@@ -44,6 +44,7 @@ class ListActors extends Component {
   };
 
   render() {
+    const { actors } = this.state;
     return (
       <div>
         <h2>Actor list</h2>
@@ -51,20 +52,20 @@ class ListActors extends Component {
           <div>
             {
               <CardColumns>
-                {this.state.actors.map(actors => (
-                  <Card style={{ width: '18rem', margin: '1rem' }}>
-                    <Card.Img variant="top" src={actors.image} />
+                {actors.map((actor, index) => (
+                  <Card key={index} style={{ width: '18rem', margin: '1rem' }}>
+                    <Card.Img variant="top" src={actor.image} />
                     <Card.Body>
-                      <Card.Title>{actors.name}</Card.Title>
+                      <Card.Title>{actor.name}</Card.Title>
                     </Card.Body>
                     <ListGroup className="list-group-flush">
                       <ListGroupItem>
                         <b>Age: </b>
-                        {actors.age}
+                        {actor.age}
                       </ListGroupItem>
                       <ListGroupItem>
                         <b>From: </b>
-                        {actors.from}
+                        {actor.from}
                       </ListGroupItem>
                     </ListGroup>
                   </Card>

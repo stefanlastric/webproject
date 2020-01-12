@@ -20,7 +20,7 @@ const UserSchema = new mongoose.Schema(
     usertype: {
       // 0 za normalne usere, 1 za admine
       type: Boolean,
-      default: false
+      default: true
     },
     date: {
       type: Date,

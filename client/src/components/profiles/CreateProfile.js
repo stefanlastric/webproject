@@ -3,14 +3,14 @@ import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 
 import Axios from 'axios';
 
-class AddActor extends Component {
+class CreateProfile extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       name: '',
-      from: '',
-      age: ''
+      bio: '',
+      genre: ''
     };
   }
   handleChange = event => {
@@ -19,17 +19,21 @@ class AddActor extends Component {
     });
   };
 
-  addNewActors = event => {
+  createNewProfile = event => {
     event.preventDefault();
     Axios.post(
-      '/actors',
-      { name: this.state.name, from: this.state.from, age: this.state.age },
+      '/profiles',
+      {
+        name: this.state.name,
+        bio: this.state.bio,
+        genre: this.state.genre
+      },
       { headers: { Authorization: 'myJwtToken' } }
     )
       .then(response => {
-        console.log('Actor successfully added.');
-        alert('Actor successfully added.');
-        this.props.history.push('/actors');
+        console.log('Profile successfully created.');
+        alert('Profile successfully created.');
+        this.props.history.push('/profiles');
       })
       .catch(error => {
         console.log(error.response);
@@ -45,41 +49,41 @@ class AddActor extends Component {
         <Container>
           <Row className="justify-content-center">
             <Col sm={6}>
-              <Form onSubmit={this.addNewProduct}>
+              <Form onSubmit={this.createNewProfile}>
                 <Form.Group>
-                  <Form.Label>Name:</Form.Label>
+                  <Form.Label>Bio:</Form.Label>
                   <Form.Control
-                    name="name"
+                    bio="bio"
                     onChange={this.handleChange}
                     type="text"
-                    placeholder="Enter actor name"
+                    placeholder="Enter bio"
                   />
                 </Form.Group>
 
                 <Form.Group>
-                  <Form.Label>From:</Form.Label>
+                  <Form.Label>Year:</Form.Label>
                   <Form.Control
-                    name="from"
+                    name="year"
                     onChange={this.handleChange}
                     type="text"
-                    placeholder="Where is this actor from?"
+                    placeholder="Enter movie year"
                   />
                 </Form.Group>
 
                 <Form.Group>
-                  <Form.Label>Age:</Form.Label>
+                  <Form.Label>Genre:</Form.Label>
                   <Form.Control
-                    name="age"
+                    name="genre"
                     onChange={this.handleChange}
                     type="text"
-                    placeholder="Enter actor age"
+                    placeholder="Enter movie genre"
                   />
                 </Form.Group>
 
                 <Button
                   variant="success"
                   type="submit"
-                  onClick={this.addNewActors}
+                  onClick={this.createNewProfile}
                 >
                   Submit
                 </Button>
@@ -91,4 +95,4 @@ class AddActor extends Component {
     );
   }
 }
-export default AddActor;
+export default CreateProfile;

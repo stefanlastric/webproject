@@ -27,17 +27,37 @@ router.get('/me', auth, async (req, res) => {
 // @desc     Create or update user profile
 // @access   Private
 router.post('/', auth, async (req, res) => {
-  const { website, bio, interests } = req.body;
+  // const { website, bio, interests } = req.body;
+  // const errors = validationResult(req);
+  // if (!errors.isEmpty()) {
+  //   return res.status(400).json({ errors: errors.array() });
+  // }
+  try {
+    const { bio, year, genre } = req.body;
 
-  // Build profile object
-  const profileFields = {};
-  profileFields.user = req.user.id;
-  if (website) profileFields.website = website;
-  if (bio) profileFields.bio = bio;
-  if (interests) {
-    profileFields.interests = interests
-      .split(',')
-      .map(interests => interests.trim());
+    // Build profile object
+    // const profileFields = {};
+    // profileFields.user = req.user.id;
+    // if (website) profileFields.website = website;
+    // if (bio) profileFields.bio = bio;
+    // if (interests) {
+    //   profileFields.interests = interests
+    //     .split(',')
+    //     .map(interests => interests.trim());
+    // }
+
+    const profile = new Profile({
+      bio,
+      year,
+      genre,
+      userId: req.user.id
+    });
+
+    const profileDB = await profile.save();
+    res.json(profileDB);
+  } catch (err) {
+    console.error(err.message);
+    return res.status(500).json({ msg: `'Server Error' ${err.message}` });
   }
 });
 
