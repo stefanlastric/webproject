@@ -9,7 +9,8 @@ import {
   CardColumns,
   Button
 } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+
+import { deleteActor } from '../../actions/movie';
 
 class ListActors extends Component {
   constructor(props) {
@@ -68,6 +69,9 @@ class ListActors extends Component {
                         {actor.from}
                       </ListGroupItem>
                     </ListGroup>
+                    <Button variant="danger" onClick={() => deleteActor(index)}>
+                      Delete Actors
+                    </Button>
                   </Card>
                 ))}
               </CardColumns>

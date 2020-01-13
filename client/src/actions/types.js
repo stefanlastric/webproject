@@ -12,3 +12,6 @@ export const GET_PROFILES = 'GET_PROFILES';
 export const CLEAR_PROFILE = 'CLEAR_PROFILE';
 export const PROFILE_ERROR = 'PROFILE_ERROR';
 export const ACCOUNT_DELETED = 'ACCOUNT_DELETED';
+export const DELETE_MOVIE = 'DELETE_MOVIE';
+export const POST_ERROR = 'POST_ERROR';
+export const DELETE_ACTOR = 'DELETE_ACTOR';

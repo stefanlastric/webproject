@@ -2,8 +2,17 @@ import React, { Component } from 'react';
 
 /* Asynchronous HTTP library */
 import Axios from 'axios';
-import { ListGroup, Card, ListGroupItem, CardColumns } from 'react-bootstrap';
+import {
+  ListGroup,
+  Card,
+  Button,
+  ListGroupItem,
+  CardColumns,
+  Row,
+  Col
+} from 'react-bootstrap';
 
+import { deleteMovie } from '../../actions/movie';
 class ListMovies extends Component {
   constructor(props) {
     super(props);
@@ -40,40 +49,50 @@ class ListMovies extends Component {
     const { movies } = this.state;
     console.log(this.props);
     return (
-      <div>
-        <h2>Movie list</h2>
-        {
+      <Row>
+        <Col sm={0}>
           <div>
+            <h2>Movie list</h2>
             {
-              <CardColumns>
-                {movies.map((movie, index) => {
-                  return (
-                    <Card
-                      key={index}
-                      style={{ width: '18rem', margin: '1rem' }}
-                    >
-                      <Card.Img variant="top" src={movie.image} />
-                      <Card.Body>
-                        <Card.Title>{movie.name}</Card.Title>
-                      </Card.Body>
-                      <ListGroup className="list-group-flush">
-                        <ListGroupItem>
-                          <b>Year: </b>
-                          {movie.year}
-                        </ListGroupItem>
-                        <ListGroupItem>
-                          <b>Genre: </b>
-                          {movie.genre}
-                        </ListGroupItem>
-                      </ListGroup>
-                    </Card>
-                  );
-                })}
-              </CardColumns>
+              <div>
+                {
+                  <CardColumns>
+                    {movies.map((movie, index) => {
+                      return (
+                        <Card
+                          key={index}
+                          style={{ width: '18rem', margin: '1rem' }}
+                        >
+                          <Card.Img variant="top" src={movie.image} />
+                          <Card.Body>
+                            <Card.Title>{movie.name}</Card.Title>
+                          </Card.Body>
+                          <ListGroup className="list-group-flush">
+                            <ListGroupItem>
+                              <b>Year: </b>
+                              {movie.year}
+                            </ListGroupItem>
+                            <ListGroupItem>
+                              <b>Genre: </b>
+                              {movie.genre}
+                            </ListGroupItem>
+                          </ListGroup>
+                          <Button
+                            variant="danger"
+                            onClick={() => deleteMovie(index)}
+                          >
+                            Delete Movie
+                          </Button>
+                        </Card>
+                      );
+                    })}
+                  </CardColumns>
+                }
+              </div>
             }
           </div>
-        }
-      </div>
+        </Col>
+      </Row>
     );
   }
 }
