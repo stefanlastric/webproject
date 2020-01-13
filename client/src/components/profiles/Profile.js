@@ -1,10 +1,45 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import '../../App.css';
+import { Row, Col } from 'react-bootstrap';
 
 function Profile(props) {
-  return <div>Profile</div>;
-}
+  return (
+    <>
+      <Row className="justify-content-center">
+        <Col sm={0}>
+          <p>
+            The part "Profile" of the website is currently underconstruction.
+            Come back in few months.
+          </p>
 
-Profile.propTypes = {};
+          <div className="spinner-border text-info zaprofil" role="status">
+            <span className="zaprofil">Loading...</span>
+          </div>
+          <div className="spinner-border text-info zaprofil" role="status">
+            <span className="zaprofil">Loading...</span>
+          </div>
+          <div className="spinner-border text-info zaprofil" role="status">
+            <span className="zaprofil">Loading...</span>
+          </div>
+          <div className="spinner-border text-info zaprofil" role="status">
+            <span className="zaprofil">Loading...</span>
+          </div>
+          <div className="spinner-border text-info zaprofil" role="status">
+            <span className="zaprofil">Loading...</span>
+          </div>
+          <div className="spinner-border text-info zaprofil" role="status">
+            <span className="zaprofil">Loading...</span>
+          </div>
+          <div className="spinner-border text-info zaprofil" role="status">
+            <span className="zaprofil">Loading...</span>
+          </div>
+          <div className="spinner-border text-info zaprofil" role="status">
+            <span className="zaprofil">Loading...</span>
+          </div>
+        </Col>
+      </Row>
+    </>
+  );
+}
 
 export default Profile;

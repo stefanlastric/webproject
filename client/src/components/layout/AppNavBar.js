@@ -53,7 +53,7 @@ export const AppNavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
   );
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="primary" expand="lg">
       <Nav>
         <Navbar.Brand to="/" exact as={NavLink}>
           Movies.ba
@@ -72,25 +72,18 @@ export const AppNavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
         </Nav.Item>
         <Nav.Item>
           {' '}
-          <Nav.Link to="/category" exact as={NavLink}>
-            Category
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          {' '}
           <Nav.Link to="/actors" exact as={NavLink}>
             Actors
           </Nav.Link>
         </Nav.Item>
-      </Nav>
-      <Nav>
         <Nav.Item>
-          <Form inline className="justify-content-center">
-            <FormControl type="text" placeholder="Search" className="ml-sm-2" />
-            <Button variant="outline-success">Search</Button>
-          </Form>
+          {' '}
+          <Nav.Link to="/category" exact as={NavLink}>
+            Category
+          </Nav.Link>
         </Nav.Item>
       </Nav>
+
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         {!loading && (
