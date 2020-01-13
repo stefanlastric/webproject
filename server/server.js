@@ -4,6 +4,7 @@ const connectDB = require('./config/db');
 // token kreira library unutar aplikacije
 const app = express();
 
+const path = require('path');
 // Connect Database
 connectDB();
 
@@ -21,5 +22,9 @@ app.use('/login', require('./routes/login'));
 app.use('/movies', require('./routes/movies'));
 app.use('/actor', require('./routes/actor'));
 app.use('/profiles', require('./routes/profile'));
-
+app.get('*', (req, res) => {
+  res.sendFile('index.html', {
+    root: path.join(__dirname, '../client/build/')
+  });
+});
 app.listen(process.env.PORT || 4000, () => console.log('App je na portu 4000'));

@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
-const config = require('config');
-const db = config.get('mongoURI');
+
+let db;
+if (!process.env.HEROKU) {
+  const config = require('config');
+  db = config.get('mongoURI');
+} else {
+  db = process.env.mongoURI;
+}
 
 const connectDB = async () => {
   try {
