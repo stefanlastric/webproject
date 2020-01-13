@@ -8,6 +8,8 @@ const path = require('path');
 // Connect Database
 connectDB();
 
+//test
+
 // Init Middleware
 app.use(express.json({ extended: false }));
 
