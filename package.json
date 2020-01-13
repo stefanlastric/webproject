@@ -23,5 +23,8 @@
   "homepage": "https://github.com/stefanlastric/webproject#readme",
   "devDependencies": {
     "concurrently": "^5.0.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.5"
   }
 }

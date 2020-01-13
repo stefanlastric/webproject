@@ -2,16 +2,15 @@ import React, { Component } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 
 import Axios from 'axios';
-import config from './../config';
 
-class AddMovie extends Component {
+class AddActor extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       name: '',
-      year: '',
-      genre: ''
+      from: '',
+      age: ''
     };
   }
   handleChange = event => {
@@ -20,17 +19,17 @@ class AddMovie extends Component {
     });
   };
 
-  addNewMovies = event => {
+  addNewActors = event => {
     event.preventDefault();
     Axios.post(
-      `${config.BASE_URL}/public/items`,
-      { name: this.state.name, year: this.state.year, genre: this.state.genre },
+      '/actor',
+      { name: this.state.name, from: this.state.from, age: this.state.age },
       { headers: { Authorization: 'myJwtToken' } }
     )
       .then(response => {
-        console.log('Movie successfully added.');
-        alert('Movie successfully added.');
-        this.props.history.push('/movies');
+        console.log('Actor successfully added.');
+        alert('Actor successfully added.');
+        this.props.history.push('/actors');
       })
       .catch(error => {
         console.log(error.response);
@@ -41,46 +40,47 @@ class AddMovie extends Component {
   };
 
   render() {
+    console.log(this.props);
     return (
       <div>
         <Container>
-          <Row className='justify-content-center'>
+          <Row className="justify-content-center">
             <Col sm={6}>
               <Form onSubmit={this.addNewProduct}>
                 <Form.Group>
                   <Form.Label>Name:</Form.Label>
                   <Form.Control
-                    name='name'
+                    name="name"
                     onChange={this.handleChange}
-                    type='text'
-                    placeholder='Enter movie name'
+                    type="text"
+                    placeholder="Enter actor name"
                   />
                 </Form.Group>
 
                 <Form.Group>
-                  <Form.Label>Year:</Form.Label>
+                  <Form.Label>From:</Form.Label>
                   <Form.Control
-                    name='year'
+                    name="from"
                     onChange={this.handleChange}
-                    type='text'
-                    placeholder='Enter movie year'
+                    type="text"
+                    placeholder="Where is this actor from?"
                   />
                 </Form.Group>
 
                 <Form.Group>
-                  <Form.Label>Genre:</Form.Label>
+                  <Form.Label>Age:</Form.Label>
                   <Form.Control
-                    name='genre'
+                    name="age"
                     onChange={this.handleChange}
-                    type='text'
-                    placeholder='Enter movie genre'
+                    type="text"
+                    placeholder="Enter actor age"
                   />
                 </Form.Group>
 
                 <Button
-                  variant='success'
-                  type='submit'
-                  onClick={this.addNewMovies}
+                  variant="success"
+                  type="submit"
+                  onClick={this.addNewActors}
                 >
                   Submit
                 </Button>
@@ -92,4 +92,4 @@ class AddMovie extends Component {
     );
   }
 }
-export default AddMovie;
+export default AddActor;

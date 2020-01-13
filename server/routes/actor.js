@@ -12,8 +12,8 @@ const User = require('../models/User');
 //@access   public
 router.get('/', async (req, res) => {
   try {
-    const actors = await Actor.find().limit(20);
-    res.json(actors);
+    const actor = await Actor.find().limit(20);
+    res.json(actor);
   } catch (err) {
     console.error(err.message);
     res.status(500).json({ msg: 'Server Error' });
@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
 });
 
 //@route    GET actor/id
-//@desc     Get actors by id
+//@desc     Get actor by id
 //@access   public
 router.get('/:id', async (req, res) => {
   try {
@@ -71,21 +71,11 @@ router.post(
       }
 
       //Add other fields from actors schema
-      const newActors = new actors({
+      const newActors = new Actor({
         name: req.body.name,
         from: req.body.from,
-        age: req.body.age,
-        movies: { name: req.body.name }
+        age: req.body.age
       });
-      const { name, from, age, movies } = req.body;
-
-      const actorFields = {};
-      if (name) actorFields.name = name;
-      if (from) actorFields.from = from;
-      if (age) actorFields.age = age;
-      if (movies) {
-        actorFields.movies = movies.split(',').map(movies => movies.trim());
-      }
 
       const actor = await newActors.save();
 
@@ -94,6 +84,7 @@ router.post(
       console.error(err.message);
       return res.status(500).json({ msg: 'Server Error' });
     }
+    const { name, from, age } = req.body;
   }
 );
 
