@@ -5,10 +5,14 @@ const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
 
 const User = require('../models/User');
+let secret;
+if (!process.env.HEROKU) {
+  const config = require('config');
+  secret = config.get('jwtSecret');
+} else {
+  secret = process.env.jwtSecret;
+}
 
-//@route    POST users
-//@desc     User registration
-//@access   public
 router.post(
   '/',
   [
