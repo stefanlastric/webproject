@@ -34,6 +34,8 @@ export default function(state = initialState, action) {
         actors: [payload, ...state.actors],
         loading: false
       };
+
+    //fix delete
     case DELETE_ACTOR:
       return {
         ...state,

@@ -6,8 +6,8 @@ import {
   ADD_MOVIE
 } from '../actions/types';
 const initialState = {
-  posts: [],
-  post: null,
+  movies: [],
+  movie: null,
   loading: true,
   error: {}
 };
@@ -19,31 +19,31 @@ export default function(state = initialState, action) {
     case GET_MOVIES:
       return {
         ...state,
-        posts: payload,
+        movies: payload,
         loading: false
       };
     case GET_MOVIE:
       return {
         ...state,
-        post: payload,
+        movie: payload,
         loading: false
       };
     case ADD_MOVIE:
       return {
         ...state,
-        posts: [payload, ...state.posts],
+        movies: [payload, ...state.movies],
         loading: false
       };
     case DELETE_MOVIE:
       return {
         ...state,
-        posts: state.posts.filter(post => post._id !== payload),
+        movies: state.movies.filter(movie => movie._id !== payload),
         loading: false
       };
     case MOVIE_ERROR:
       return {
         ...state,
-        posts: payload,
+        movies: payload,
         loading: false
       };
     default:

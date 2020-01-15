@@ -95,7 +95,7 @@ export const createMovie = (
 
     dispatch({
       type: MOVIE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response, status: err.response }
     });
   }
 };
@@ -115,7 +115,7 @@ export const deleteMovie = id => async dispatch => {
   } catch (err) {
     dispatch({
       type: MOVIE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response, status: err.response }
     });
   }
 };

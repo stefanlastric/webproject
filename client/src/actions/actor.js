@@ -1,13 +1,7 @@
 import axios from 'axios';
 import { setAlert } from './alert';
 
-import {
-  GET_ACTOR,
-  GET_ACTORS,
-  ACTOR_ERROR,
-  CLEAR_ACTOR,
-  DELETE_ACTOR
-} from './types';
+import { GET_ACTOR, GET_ACTORS, ACTOR_ERROR, DELETE_ACTOR } from './types';
 
 //export current user actors
 export const getCurrentActor = () => async dispatch => {
@@ -43,7 +37,7 @@ export const getActors = () => async dispatch => {
   }
 };
 
-//Get actors by ID
+//Get actors by ID   dodati nekad u zivotu
 export const getActorsById = userId => async dispatch => {
   try {
     const res = await axios.get(`/actors/user/${userId}`);
