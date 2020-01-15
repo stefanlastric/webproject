@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
 
+import './AppNavBar.css';
+
 export const AppNavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLink = (
     <Nav className="ml-auto">
@@ -53,44 +55,46 @@ export const AppNavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
   );
 
   return (
-    <Navbar bg="primary" expand="lg">
-      <Nav>
-        <Navbar.Brand to="/" exact as={NavLink}>
-          Movies.ba
-        </Navbar.Brand>
-        <Nav.Item>
-          {' '}
-          <Nav.Link to="/" exact as={NavLink}>
-            Home
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          {' '}
-          <Nav.Link to="/movies" exact as={NavLink}>
-            Movies
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          {' '}
-          <Nav.Link to="/actors" exact as={NavLink}>
-            Actors
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          {' '}
-          <Nav.Link to="/category" exact as={NavLink}>
-            Category
-          </Nav.Link>
-        </Nav.Item>
-      </Nav>
+    <div className="navigation-bar">
+      <Navbar expand="lg">
+        <Nav>
+          <Navbar.Brand to="/" exact as={NavLink}>
+            Movies.ba
+          </Navbar.Brand>
+          <Nav.Item>
+            {' '}
+            <Nav.Link to="/" exact as={NavLink}>
+              Home
+            </Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            {' '}
+            <Nav.Link to="/movies" exact as={NavLink}>
+              Movies
+            </Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            {' '}
+            <Nav.Link to="/actors" exact as={NavLink}>
+              Actors
+            </Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            {' '}
+            <Nav.Link to="/category" exact as={NavLink}>
+              Category
+            </Nav.Link>
+          </Nav.Item>
+        </Nav>
 
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        {!loading && (
-          <Fragment>{isAuthenticated ? authLink : guestLinks}</Fragment>
-        )}
-      </Navbar.Collapse>
-    </Navbar>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          {!loading && (
+            <Fragment>{isAuthenticated ? authLink : guestLinks}</Fragment>
+          )}
+        </Navbar.Collapse>
+      </Navbar>
+    </div>
   );
 };
 

@@ -1,0 +1,16 @@
+.categories {
+  height: 100%;
+  width: 100%;
+}
+
+.categories-carousel {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.categories img {
+  height: 600px;
+}

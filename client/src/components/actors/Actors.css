@@ -1,0 +1,9 @@
+.actors {
+  display: flex;
+  flex-direction: column;
+}
+
+.actors-list {
+  display: flex;
+  flex-wrap: wrap;
+}

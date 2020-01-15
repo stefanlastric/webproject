@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getMovies, deleteMovie } from '../../actions/movie';
+import './ListMovies.css';
 
 import {
   ListGroup,
@@ -13,56 +14,57 @@ import {
   Col
 } from 'react-bootstrap';
 
-const Movies = ({ getMovies, movie: { movies }, deleteMovie }) => {
+const Movies = ({
+  getMovies,
+  movie: { movies },
+  deleteMovie,
+  isAuthenticated
+}) => {
   useEffect(() => {
     getMovies();
   }, []);
 
   return (
-    <Row>
-      <Col sm={0}>
-        <div>
-          <h2 className="budinasredini">Movie list</h2>
+    <div className="movies">
+      <h2 className="movies-title">Movie list</h2>
+      {
+        <div className="movies-list">
           {
-            <div>
-              {
-                <CardColumns>
-                  {movies.map((movie, index) => {
-                    return (
-                      <Card
-                        key={index}
-                        style={{ width: '18rem', margin: '1rem' }}
+            <CardColumns>
+              >
+              {movies.map((movie, index) => {
+                return (
+                  <Card key={index} style={{ width: '18rem', margin: '1rem' }}>
+                    <Card.Img variant="top" src={movie.image} />
+                    <Card.Body>
+                      <Card.Title>{movie.name}</Card.Title>
+                    </Card.Body>
+                    <ListGroup>
+                      <ListGroupItem>
+                        <b>Year: </b>
+                        {movie.year}
+                      </ListGroupItem>
+                      <ListGroupItem>
+                        <b>Genre: </b>
+                        {movie.genre}
+                      </ListGroupItem>
+                    </ListGroup>
+                    {isAuthenticated && (
+                      <Button
+                        variant="danger"
+                        onClick={() => deleteMovie(movie._id)}
                       >
-                        <Card.Img variant="top" src={movie.image} />
-                        <Card.Body>
-                          <Card.Title>{movie.name}</Card.Title>
-                        </Card.Body>
-                        <ListGroup className="list-group-flush">
-                          <ListGroupItem>
-                            <b>Year: </b>
-                            {movie.year}
-                          </ListGroupItem>
-                          <ListGroupItem>
-                            <b>Genre: </b>
-                            {movie.genre}
-                          </ListGroupItem>
-                        </ListGroup>
-                        <Button
-                          variant="danger"
-                          onClick={() => deleteMovie(index)}
-                        >
-                          Delete Movie
-                        </Button>
-                      </Card>
-                    );
-                  })}
-                </CardColumns>
-              }
-            </div>
+                        Delete Movie
+                      </Button>
+                    )}
+                  </Card>
+                );
+              })}
+            </CardColumns>
           }
         </div>
-      </Col>
-    </Row>
+      }
+    </div>
   );
 };
 Movies.propTypes = {
@@ -72,7 +74,8 @@ Movies.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  movie: state.movie
+  movie: state.movie,
+  isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(mapStateToProps, { getMovies, deleteMovie })(Movies);

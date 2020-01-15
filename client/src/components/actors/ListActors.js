@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getActors, deleteActor } from '../../actions/actor';
 
+import './Actors.css';
+
 import {
   ListGroup,
   Card,
@@ -12,45 +14,53 @@ import {
   Row
 } from 'react-bootstrap';
 
-const Actors = ({ getActors, actor: { actors, _id }, deleteActor }) => {
+const Actors = ({
+  getActors,
+  actor: { actors },
+  deleteActor,
+  isAuthenticated
+}) => {
   useEffect(() => {
     getActors();
   }, []);
 
   return (
     <Fragment>
-      <Row className="budinasredini">
-        <h2>Actor list</h2>
-      </Row>
+      <div className="actors">
+        <Row className="budinasredini">
+          <h2>Actor list</h2>
+        </Row>
 
-      <CardColumns>
-        {actors.map((actor, _id) => (
-          <Card key={_id} style={{ width: '18rem', margin: '1rem' }}>
-            <Card.Img variant="top" src={actor.image} />
-            <Card.Body>
-              <Card.Title>{actor.name}</Card.Title>
-            </Card.Body>
-            <ListGroup className="list-group-flush">
-              <ListGroupItem>
-                <b>Age: </b>
-                {actor.age}
-              </ListGroupItem>
-              <ListGroupItem>
-                <b>From: </b>
-                {actor.from}
-              </ListGroupItem>
-            </ListGroup>
-            <Button
-              className="btn btn-danger"
-              type="button"
-              value={_id}
-              onClick={() => deleteActor()}
-            >
-              Delete Actors
-            </Button>
-          </Card>
-        ))}
-      </CardColumns>
+        <CardColumns className="actors-list">
+          {actors.map((actor, index) => (
+            <Card key={index} style={{ width: '18rem', margin: '1rem' }}>
+              <Card.Img variant="top" src={actor.image} />
+              <Card.Body>
+                <Card.Title>{actor.name}</Card.Title>
+              </Card.Body>
+              <ListGroup className="list-group-flush">
+                <ListGroupItem>
+                  <b>Age: </b>
+                  {actor.age}
+                </ListGroupItem>
+                <ListGroupItem>
+                  <b>From: </b>
+                  {actor.from}
+                </ListGroupItem>
+              </ListGroup>
+              {isAuthenticated && (
+                <Button
+                  className="btn btn-danger"
+                  type="button"
+                  onClick={() => deleteActor(actor._id)}
+                >
+                  Delete Actor
+                </Button>
+              )}
+            </Card>
+          ))}
+        </CardColumns>
+      </div>
     </Fragment>
   );
 };
@@ -62,7 +72,8 @@ Actors.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  actor: state.actor
+  actor: state.actor,
+  isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(mapStateToProps, { getActors, deleteActor })(Actors);

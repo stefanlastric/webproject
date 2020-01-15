@@ -3,12 +3,10 @@ import { Row, Image, Col } from 'react-bootstrap';
 const Landing = () => {
   return (
     <>
-      <Row className="justify-content-center">
+      <Row className="budinasredini">
         <Col sm={0}>
-          <Image
-            src="https://cdn.hipwallpaper.com/i/5/97/fcIupN.jpg"
-            thumbnail
-          />
+          <Image src="https://miro.medium.com/max/970/0*AB_I3rxxmNRsBL43.jpg" />
+          <div className="budinasredini"> Welcome</div>
         </Col>
       </Row>
     </>

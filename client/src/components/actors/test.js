@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-/* Asynchronous HTTP library */
 import Axios from 'axios';
 import {
   ListGroup,

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 
 import Axios from 'axios';
+
+import './AddMovie.css';
 
 class AddMovie extends Component {
   constructor(props) {
@@ -41,52 +43,42 @@ class AddMovie extends Component {
 
   render() {
     return (
-      <div>
-        <Container>
-          <Row className="justify-content-center">
-            <Col sm={6}>
-              <Form onSubmit={this.addNewProduct}>
-                <Form.Group>
-                  <Form.Label>Name:</Form.Label>
-                  <Form.Control
-                    name="name"
-                    onChange={this.handleChange}
-                    type="text"
-                    placeholder="Enter movie name"
-                  />
-                </Form.Group>
+      <div className="add-movie">
+        <Form onSubmit={this.addNewProduct}>
+          <Form.Group>
+            <Form.Label>Name:</Form.Label>
+            <Form.Control
+              name="name"
+              onChange={this.handleChange}
+              type="text"
+              placeholder="Enter movie name"
+            />
+          </Form.Group>
 
-                <Form.Group>
-                  <Form.Label>Year:</Form.Label>
-                  <Form.Control
-                    name="year"
-                    onChange={this.handleChange}
-                    type="text"
-                    placeholder="Enter movie year"
-                  />
-                </Form.Group>
+          <Form.Group>
+            <Form.Label>Year:</Form.Label>
+            <Form.Control
+              name="year"
+              onChange={this.handleChange}
+              type="text"
+              placeholder="Enter movie year"
+            />
+          </Form.Group>
 
-                <Form.Group>
-                  <Form.Label>Genre:</Form.Label>
-                  <Form.Control
-                    name="genre"
-                    onChange={this.handleChange}
-                    type="text"
-                    placeholder="Enter movie genre"
-                  />
-                </Form.Group>
+          <Form.Group>
+            <Form.Label>Genre:</Form.Label>
+            <Form.Control
+              name="genre"
+              onChange={this.handleChange}
+              type="text"
+              placeholder="Enter movie genre"
+            />
+          </Form.Group>
 
-                <Button
-                  variant="success"
-                  type="submit"
-                  onClick={this.addNewMovies}
-                >
-                  Submit
-                </Button>
-              </Form>
-            </Col>
-          </Row>
-        </Container>
+          <Button variant="success" type="submit" onClick={this.addNewMovies}>
+            Submit
+          </Button>
+        </Form>
       </div>
     );
   }
