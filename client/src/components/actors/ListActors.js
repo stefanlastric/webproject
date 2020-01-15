@@ -10,7 +10,7 @@ import {
   Button
 } from 'react-bootstrap';
 
-import { deleteActor } from '../../actions/movie';
+import { deleteActor } from '../../actions/actor';
 
 class ListActors extends Component {
   constructor(props) {

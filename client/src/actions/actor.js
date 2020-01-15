@@ -2,67 +2,67 @@ import axios from 'axios';
 import { setAlert } from './alert';
 
 import {
-  GET_MOVIE,
-  GET_MOVIES,
-  MOVIE_ERROR,
-  CLEAR_MOVIE,
-  DELETE_MOVIE
+  GET_ACTOR,
+  GET_ACTORS,
+  ACTOR_ERROR,
+  CLEAR_ACTOR,
+  DELETE_ACTOR
 } from './types';
 
-//export current user movies
-export const getCurrentMovie = () => async dispatch => {
+//export current user actors
+export const getCurrentActor = () => async dispatch => {
   try {
-    const res = await axios.get('/movies/me');
+    const res = await axios.get('/actors/me');
 
     dispatch({
-      type: GET_MOVIE,
+      type: GET_ACTOR,
       payload: res.data
     });
   } catch (err) {
     dispatch({
-      type: MOVIE_ERROR,
+      type: ACTOR_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
     });
   }
 };
 
-//Get all movies
-export const getMovies = () => async dispatch => {
-  dispatch({ type: CLEAR_MOVIE });
+//Get all actorss
+export const getActors = () => async dispatch => {
+  dispatch({ type: CLEAR_ACTOR });
   try {
-    const res = await axios.get('/movies');
+    const res = await axios.get('/actors');
 
     dispatch({
-      type: GET_MOVIES,
+      type: GET_ACTORS,
       payload: res.data
     });
   } catch (err) {
     dispatch({
-      type: MOVIE_ERROR,
+      type: ACTOR_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
     });
   }
 };
 
-//Get movies by ID
-export const getMoviesById = userId => async dispatch => {
+//Get actors by ID
+export const getActorsById = userId => async dispatch => {
   try {
-    const res = await axios.get(`/movies/user/${userId}`);
+    const res = await axios.get(`/actors/user/${userId}`);
 
     dispatch({
-      type: GET_MOVIE,
+      type: GET_ACTOR,
       payload: res.data
     });
   } catch (err) {
     dispatch({
-      type: MOVIE_ERROR,
+      type: ACTOR_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
     });
   }
 };
 
-//Create or update movies
-export const createMovie = (
+//Create or update actors
+export const createActor = (
   formData,
   history,
   edit = false
@@ -74,14 +74,14 @@ export const createMovie = (
       }
     };
 
-    const res = await axios.post('/movies', formData, config);
+    const res = await axios.post('/actors', formData, config);
 
     dispatch({
-      type: GET_MOVIE,
+      type: GET_ACTOR,
       payload: res.data
     });
 
-    dispatch(setAlert(edit ? 'Movie Updated' : 'Movie Created', 'success'));
+    dispatch(setAlert(edit ? 'Actor Updated' : 'Actor Created', 'success'));
 
     if (!edit) {
       history.push('/');
@@ -94,27 +94,27 @@ export const createMovie = (
     }
 
     dispatch({
-      type: MOVIE_ERROR,
+      type: ACTOR_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
     });
   }
 };
 
-//Delete movies
+//Delete actors
 
-export const deleteMovie = id => async dispatch => {
+export const deleteActor = id => async dispatch => {
   try {
-    await axios.delete(`/movies/${id}`);
+    await axios.delete(`/actors/${id}`);
 
     dispatch({
-      type: DELETE_MOVIE,
+      type: DELETE_ACTOR,
       payload: id
     });
 
-    dispatch(setAlert('Movie Removed', 'success'));
+    dispatch(setAlert('Actor Removed', 'success'));
   } catch (err) {
     dispatch({
-      type: MOVIE_ERROR,
+      type: ACTOR_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
     });
   }

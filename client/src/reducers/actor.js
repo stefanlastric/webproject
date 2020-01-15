@@ -1,13 +1,13 @@
 import {
-  GET_PROFILE,
-  PROFILE_ERROR,
-  CLEAR_PROFILE,
-  GET_PROFILES
+  GET_ACTORS,
+  GET_ACTOR,
+  ACTOR_ERROR,
+  DELETE_ACTOR,
+  ADD_ACTOR
 } from '../actions/types';
-
 const initialState = {
-  profile: null,
-  profiles: [],
+  posts: [],
+  post: null,
   loading: true,
   error: {}
 };
@@ -16,28 +16,34 @@ export default function(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
-    case GET_PROFILE:
+    case GET_ACTORS:
       return {
         ...state,
-        profile: payload,
+        posts: payload,
         loading: false
       };
-    case GET_PROFILES:
+    case GET_ACTOR:
       return {
         ...state,
-        profiles: payload,
+        post: payload,
         loading: false
       };
-    case PROFILE_ERROR:
+    case ADD_ACTOR:
       return {
         ...state,
-        error: payload,
+        posts: [payload, ...state.posts],
         loading: false
       };
-    case CLEAR_PROFILE:
+    case DELETE_ACTOR:
       return {
         ...state,
-        profile: null,
+        posts: state.posts.filter(post => post._id !== payload),
+        loading: false
+      };
+    case ACTOR_ERROR:
+      return {
+        ...state,
+        posts: payload,
         loading: false
       };
     default:
