@@ -28,7 +28,6 @@ export const getCurrentActor = () => async dispatch => {
 
 //Get all actorss
 export const getActors = () => async dispatch => {
-  dispatch({ type: CLEAR_ACTOR });
   try {
     const res = await axios.get('/actors');
 
@@ -39,7 +38,7 @@ export const getActors = () => async dispatch => {
   } catch (err) {
     dispatch({
       type: ACTOR_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response, status: err.response }
     });
   }
 };
@@ -56,7 +55,7 @@ export const getActorsById = userId => async dispatch => {
   } catch (err) {
     dispatch({
       type: ACTOR_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response, status: err.response }
     });
   }
 };
@@ -95,7 +94,7 @@ export const createActor = (
 
     dispatch({
       type: ACTOR_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response, status: err.response }
     });
   }
 };

@@ -6,8 +6,8 @@ import {
   ADD_ACTOR
 } from '../actions/types';
 const initialState = {
-  posts: [],
-  post: null,
+  actors: [],
+  actor: null,
   loading: true,
   error: {}
 };
@@ -19,31 +19,31 @@ export default function(state = initialState, action) {
     case GET_ACTORS:
       return {
         ...state,
-        posts: payload,
+        actors: payload,
         loading: false
       };
     case GET_ACTOR:
       return {
         ...state,
-        post: payload,
+        actor: payload,
         loading: false
       };
     case ADD_ACTOR:
       return {
         ...state,
-        posts: [payload, ...state.posts],
+        actors: [payload, ...state.actors],
         loading: false
       };
     case DELETE_ACTOR:
       return {
         ...state,
-        posts: state.posts.filter(post => post._id !== payload),
+        actors: state.actors.filter(actor => actor._id !== payload),
         loading: false
       };
     case ACTOR_ERROR:
       return {
         ...state,
-        posts: payload,
+        actors: payload,
         loading: false
       };
     default:

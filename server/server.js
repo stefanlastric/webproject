@@ -22,7 +22,7 @@ app.use(cors());
 app.use('/users', require('./routes/users'));
 app.use('/login', require('./routes/login'));
 app.use('/movies', require('./routes/movies'));
-app.use('/actor', require('./routes/actor'));
+app.use('/actors', require('./routes/actors'));
 app.use('/profiles', require('./routes/profile'));
 app.get('*', (req, res) => {
   res.sendFile('index.html', {

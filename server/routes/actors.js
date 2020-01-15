@@ -93,7 +93,7 @@ router.post(
 //@access   private
 router.delete('/:id', auth, async (req, res) => {
   try {
-    const actor = await Post.findById(req.params.id);
+    const actor = await Actor.findById(req.params.id);
 
     if (!actor) {
       return res.status(404).json({ msg: 'actor does not exist' });

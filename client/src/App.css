@@ -27,7 +27,11 @@
 .App-link {
   color: #61dafb;
 }
-
+.budinasredini {
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+}
 .zaprofil {
   margin-bottom: 500px;
   margin-right: 50px;

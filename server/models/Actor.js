@@ -19,6 +19,9 @@ const ActorSchema = new mongoose.Schema(
       type: Date,
       default: Date.now
     },
+    image: {
+      type: String
+    },
     movies: [
       {
         movie: {

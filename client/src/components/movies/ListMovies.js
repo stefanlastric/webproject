@@ -52,7 +52,7 @@ class ListMovies extends Component {
       <Row>
         <Col sm={0}>
           <div>
-            <h2>Movie list</h2>
+            <h2 className="budinasredini">Movie list</h2>
             {
               <div>
                 {
